@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Wanderlust Log</title>
+    </head>
+
+    <body>
+
+        <h1>Wanderlust Log</h1>
+        <p>Welcome, {{ user.username }}!</p>
+
+        <a href="{% url 'add_review' %}">
+            <button>
+                Add a new review
+            </button>
+        </a>
+
+        <h2>Visited countries</h2>
+        <p>
+            {{ visited_count }} / 195
+            ({{ visited_percentage }}%)
+        </p>
+
+    </body>
+
+</html>
+
