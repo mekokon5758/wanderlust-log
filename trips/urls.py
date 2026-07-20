@@ -18,8 +18,8 @@ urlpatterns = [
     path("profile/", views.profile, name="profile"),
     path("profile/edit/", views.edit_profile, name="edit_profile"),
 
-    path("countries/", views.country_list, name="country_list"),
-    path("countries/<slug:country>/", views.country_detail, name="country_detail"),
+    path("visited/", views.visited_countries, name="visited_countries"),
+    path("visited/<slug:country>/", views.country_detail, name="country_detail"),
 
     path("wishlist/", views.wishlist, name="wishlist"),
 ]

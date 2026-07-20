@@ -87,7 +87,17 @@ def overview(request):
 
 @login_required
 def add_review(request):
-    return HttpResponse("Add Review")
+
+    if request.method == "POST":
+        Review.objects.create(
+            country=request.POST["country"],
+            overall_score=request.POST["overall_score"],
+            comment=request.POST["comment"],
+            author=request.user,
+        )
+        return redirect("overview")
+
+    return render(request, "trips/add_review.html")
 
 @login_required
 def profile(request):
@@ -97,11 +107,11 @@ def profile(request):
 def edit_profile(request):
     return HttpResponse("Edit Profile")
 
-
-def country_list(request):
+@login_required
+def visited_countries(request):
     return HttpResponse("Visited Countries")
 
-
+@login_required
 def country_detail(request, country):
     return HttpResponse(f"Country: {country}")
 
