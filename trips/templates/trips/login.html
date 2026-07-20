@@ -10,33 +10,39 @@
         <h2>Log In</h2>
 
         <form action="" method="post">
-        <div>
-            <label for="username">Username</label><br>
-            <input
-                type="text"
-                id="username"
-                name="username" 
-                placeholder="Enter your username"
-                required
-            >
-        </div>
+            {% csrf_token %}
+            
+            <div>
+                <label for="username">Username</label><br>
+                <input
+                    type="text"
+                    id="username"
+                    name="username" 
+                    placeholder="Enter your username"
+                    required
+                >
+            </div>
 
-        <br>
+            <br>
 
-        <div>
-            <label for="password">Password</label><br>
-            <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Enter your password"
-                required
-            >
-        </div>
+            <div>
+                <label for="password">Password</label><br>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Enter your password"
+                    required
+                >
+            </div>
 
-        <br>
+            <br>
 
-        <button type="submit">Log In</button>
+            {% if error %}
+            <p>{{ error }}</p>
+            {% endif %}
+
+            <button type="submit">Log In</button>
     </form>
 
     <br>

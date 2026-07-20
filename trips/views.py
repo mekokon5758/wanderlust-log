@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-
+from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
 def landing(request):
@@ -10,6 +10,29 @@ def landing(request):
 
 
 def login_view(request):
+
+    if request.method == "POST":
+
+        username = request.POST["username"]
+        password = request.POST["password"]
+
+        user = authenticate(
+            request,
+            username=username,
+            password=password
+        )
+
+        if user is not None:
+            login(request, user)
+            return redirect("overview")
+
+        else:
+            return render(
+                request,
+                "trips/login.html",
+                {"error": "Invalid username or password"}
+            )
+
     return render(request, "trips/login.html")
 
 
@@ -45,7 +68,7 @@ def signup(request):
 
 @login_required
 def overview(request):
-    return HttpResponse("Overview")
+    return render(request, "trips/overview.html")
 
 
 def profile(request):
