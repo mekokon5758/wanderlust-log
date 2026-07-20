@@ -5,6 +5,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.models import User
 
+from trips.models import Review
+
 def landing(request):
     return render(request, "trips/index.html")
 
@@ -68,13 +70,30 @@ def signup(request):
 
 @login_required
 def overview(request):
-    return render(request, "trips/overview.html")
 
+    visited_count = Review.objects.filter(
+        author=request.user
+    ).count()
+    visited_percentage = round(
+        visited_count / 195 * 100, 1
+    )
 
+    context = {
+        "visited_count": visited_count,
+        "visited_percentage": visited_percentage,
+    }
+    
+    return render(request, "trips/overview.html", context)
+
+@login_required
+def add_review(request):
+    return HttpResponse("Add Review")
+
+@login_required
 def profile(request):
     return HttpResponse("Profile")
 
-
+@login_required
 def edit_profile(request):
     return HttpResponse("Edit Profile")
 
