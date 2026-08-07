@@ -1,34 +1,41 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wanderlust Log</title>
-</head>
-<body>
-    <h1>Add Review</h1>
+{% extends "base.html" %}
 
-    <form method="post">
-        {% csrf_token %}
+{% block title %}
+Add Review
+{% endblock %}
 
-        <label for="country">Country:</label><br>
-        <input type="text" id="country" name="country" required><br><br>
+{% block content %}
 
-        <label for="overall_score">Overall Score (out of 5):</label><br>
-        <select id="overall_score" name="overall_score">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <br><br>
+<h2>Add Review</h2>
 
-        <label for="comment">Comment:</label><br>
-        <textarea id="comment" name="comment" rows="5" cols="40"></textarea><br><br>
+<form method="post">
+    {% csrf_token %}
 
-        <button type="submit">Submit Review</button>
-    </form>
+    <label for="country">Country:</label><br>
+    <input type="text" id="country" name="country" required><br><br>
 
-</body>
-</html>
+    <label for="overall_score">Overall Score (out of 5):</label><br>
+    <select id="overall_score" name="overall_score">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+    </select>
+    <br><br>
+
+    <label for="comment">Comment:</label><br>
+    <textarea id="comment" name="comment" rows="5" cols="40"></textarea><br><br>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div style="color: red; margin-bottom: 10px;">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <button type="submit">Submit Review</button>
+</form>
+
+{% endblock %}

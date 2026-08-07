@@ -119,3 +119,6 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'static'
+
+#Authentication
+LOGOUT_REDIRECT_URL = "login"
