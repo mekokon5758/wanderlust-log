@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}
+Review Details
+{% endblock %}
+
+{% block content %}
+
+<h2>Review Details</h2>
+
+<form action="{% url 'delete_review' review.id %}" method="post" style="display:inline;">
+    {% csrf_token %}
+    <button type="submit" style="border:none; background:none; cursor:pointer;">
+        <i class="bi bi-trash-fill"></i>
+    </button>
+</form>
+
+<h3>{{ review.country }}</h3>
+
+<p>
+    <strong>Overall Rating:</strong>
+    {{ review.overall_score }}/5
+</p>
+
+<p>
+    <strong>Comment:</strong>
+</p>
+
+<p>{{ review.comment }}</p>
+
+<p>
+    <strong>Reviewed on:</strong>
+    {{ review.created_date }}
+</p>
+
+<a href="{% url 'visited_countries' %}">
+    ← Back to Visited Countries
+</a>
+
+{% endblock %}

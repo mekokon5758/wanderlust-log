@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block content %}
+
+<h2>{{ user.username }}'s Profile</h2>
+
+<img src="{{ user.profile.image.url }}"
+     alt="Profile Picture"
+     width="150">
+
+<p><strong>Bio:</strong></p>
+<p>{{ user.profile.bio }}</p>
+
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Log Out</button>
+</form>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login
@@ -89,8 +89,15 @@ def overview(request):
 def add_review(request):
 
     if request.method == "POST":
+        country = request.POST["country"]
+
+        # Check if the user has already reviewed this country
+        if Review.objects.filter(author=request.user, country=country).exists():
+            messages.error(request, "You have already reviewed this country.")
+            return render(request, "trips/add_review.html")
+
         Review.objects.create(
-            country=request.POST["country"],
+            country=country,
             overall_score=request.POST["overall_score"],
             comment=request.POST["comment"],
             author=request.user,
@@ -101,7 +108,7 @@ def add_review(request):
 
 @login_required
 def profile(request):
-    return HttpResponse("Profile")
+    return render(request, "trips/view_profile.html")
 
 @login_required
 def edit_profile(request):
@@ -109,12 +116,35 @@ def edit_profile(request):
 
 @login_required
 def visited_countries(request):
-    return HttpResponse("Visited Countries")
+    reviews = Review.objects.filter(author=request.user)
+    context = {
+        "reviews": reviews,
+    }
+    return render(request, "trips/visited_countries.html", context)
 
 @login_required
-def country_detail(request, country):
-    return HttpResponse(f"Country: {country}")
+def country_detail(request, review_id):
+    review = get_object_or_404(
+        Review,
+        author=request.user,
+        id=review_id
+    )
+    return render(request, "trips/country_detail.html", {
+        "review": review,
+    })
 
+
+@login_required
+def delete_review(request, review_id):
+    review = get_object_or_404(
+        Review,
+        id=review_id,
+        author=request.user,
+    )
+
+    if request.method == "POST":
+        review.delete()
+    return redirect("visited_countries")
 
 def wishlist(request):
     return HttpResponse("Wishlist")
