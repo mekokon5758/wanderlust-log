@@ -1,46 +1,38 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 Visited Countries
 {% endblock %}
 
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{% static 'css/base.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/visited_countries.css' %}">
+{% endblock %}
+
 {% block content %}
 
-<style>
-    .review-link {
-        text-decoration: none;
-        color: inherit;
-    }
+<div class="default-page">
+    <h2 class="big-text">Visited Countries</h2>
 
-    .review-card {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 15px;
-        margin-bottom: 15px;
-        cursor: pointer;
-    }
+    {% if reviews %}
+        {% for review in reviews %}
+            <a href="{% url 'country_detail' review.id %}" class="review-link">
+                <div class="review-card">
+                    <h3>{{ review.country }}</h3>
 
-    .review-card:hover {
-        background-color: #f5f5f5;
-    }
-</style>
+                    <p>{{ review.overall_score }}/5</p>
 
-<h2>Visited Countries</h2>
-
-{% if reviews %}
-    {% for review in reviews %}
-        <a href="{% url 'country_detail' review.id %}" class="review-link">
-            <div class="review-card">
-                <h3>{{ review.country }}</h3>
-
-                <p>{{ review.overall_score }}/5</p>
-
-                <p>{{ review.comment }}</p>
-            </div>
-        </a>
-    {% endfor %}
-{% else %}
-    <p>You haven't added any reviews yet.</p>
-{% endif %}
+                    <p>{{ review.comment }}</p>
+                </div>
+            </a>
+        {% endfor %}
+    {% else %}
+        <p>You haven't added any reviews yet.</p>
+    {% endif %}
+</div>
 
 {% endblock %}

@@ -1,55 +1,79 @@
+{% load static%}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Log In - Wanderlust Log</title>
+
+        <link rel="stylesheet"
+          href="{% static 'css/base.css' %}">
+
+        <link rel="stylesheet"
+          href="{% static 'css/login.css' %}">
+
     </head>
+
     <body>
-        <h1>Wanderlust Log</h1>
-        <h2>Log In</h2>
 
-        <form action="" method="post">
-            {% csrf_token %}
-            
-            <div>
-                <label for="username">Username</label><br>
-                <input
-                    type="text"
-                    id="username"
-                    name="username" 
-                    placeholder="Enter your username"
-                    required
-                >
-            </div>
+        <main class="login-page">
 
-            <br>
+            <img 
+                src="{% static 'images/logo_header.png' %}"
+                alt="Wanderlust Log"
+                class="login-logo"
+            >
 
-            <div>
-                <label for="password">Password</label><br>
-                <input
-                    type="password"
-                    id="password"
-                    name="password"
-                    placeholder="Enter your password"
-                    required
-                >
-            </div>
+            <form action="" method="post">
+                {% csrf_token %}
+                
+                <div>
+                    <label for="username" class="form-label">Username</label><br>
+                    <input
+                        type="text"
+                        id="username"
+                        name="username" 
+                        class="form-input"
+                        placeholder="Enter your username"
+                        required
+                    >
+                </div>
 
-            <br>
+                <br>
 
-            {% if error %}
-            <p>{{ error }}</p>
-            {% endif %}
+                <div>
+                    <label for="password" class="form-label">Password</label><br>
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        class="form-input"
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
 
-            <button type="submit">Log In</button>
-    </form>
+                <br>
 
-    <br>
+                {% if error %}
+                <p>{{ error }}</p>
+                {% endif %}
 
-    <a href="{% url 'forgot_password' %}">Forgot your password?</a>
+                <button type="submit" class="blue-button">Log In</button>
+        </form>
 
-    <a href="{% url 'signup' %}">Don't have an account?</a>
+        <br>
+
+        <!--
+        <a href="{% url 'forgot_password' %}" class="text-link">Forgot your password?</a>
+        -->
+
+        <br>
+        
+        <a href="{% url 'signup' %}" class="text-link">Don't have an account?</a>
+
+    </main>
 
 </body>
 </html>

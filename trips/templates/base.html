@@ -1,6 +1,10 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Wanderlust Log{% endblock %}</title>
@@ -9,50 +13,53 @@
     <link rel="stylesheet"
         href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
-    <style>
-        body {
-            margin: 20px;
-            font-family: Arial, sans-serif;
-        }
+    <!-- Common CSS -->
+    <link rel="stylesheet"
+        href="{% static 'css/base.css' %}">
 
-        .title-link {
-            text-decoration: none;
-            color: black;
-        }
-
-        .title-link:hover {
-            color: #555;
-        }
-
-        .profile-link {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            color: black;
-            text-decoration: none;
-        }
-
-        .profile-link i {
-            font-size: 3rem;
-        }
-
-        .profile-link:hover {
-            color: #555;
-        }
-    </style>
+    <!-- Page-specific CSS -->
+    {% block extra_css %}
+    {% endblock %}
+    
 </head>
 
 <body>
 
     <!-- Profile Icon -->
-    <a href="{% url 'profile' %}" class="profile-link">
-        <i class="bi bi-person-circle"></i>
-    </a>
+    <div class="profile-dropdown">
 
-    <!-- Clickable Title -->
+        <button class="profile-button" type="button">
+            <img
+                src="{{ user.profile.image.url }}"
+                alt="Profile"
+                class="header-profile-picture">
+        </button>
+
+        <div class="profile-menu">
+
+            <a href="{% url 'profile' %}">
+                <i class="bi bi-person"></i>
+                Profile
+            </a>
+
+            <form action="{% url 'logout' %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="logout-button">
+                    <i class="bi bi-box-arrow-right"></i>
+                    Log out
+                </button>
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- Clickable Logo/Title -->
     <h1>
-        <a href="{% url 'overview' %}" class="title-link">
-            Wanderlust Log
+        {% load static %}
+
+        <a href="{% url 'overview' %}" class="logo-link">
+            <img src="{% static 'images/logo_header.png' %}" alt="Wanderlust Log" width="200"> <!-- You put load static template tag, and write the path after static folder-->
         </a>
     </h1>
 

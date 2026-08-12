@@ -38,7 +38,7 @@ def login_view(request):
     return render(request, "trips/login.html")
 
 
-def forgot_password(request):
+def forgot_password(request): 
     return render(request, "trips/forgot_password.html")
 
 
@@ -47,6 +47,7 @@ def signup(request):
     if request.method == "POST":
         username = request.POST["username"]
         password = request.POST["password"]
+        email = request.POST["email"]
         password_confirm = request.POST["password_confirm"]
 
         if password != password_confirm:
@@ -56,7 +57,8 @@ def signup(request):
 
         user = User.objects.create_user(
             username=username,
-            password=password
+            password=password,
+            email=email
         )
         messages.success(
             request, 
@@ -112,7 +114,19 @@ def profile(request):
 
 @login_required
 def edit_profile(request):
-    return HttpResponse("Edit Profile")
+    profile = request.user.profile
+
+    if request.method == "POST":
+        profile.bio = request.POST["bio"]
+
+        if "image" in request.FILES:
+            profile.image = request.FILES["image"]
+
+        profile.save()
+
+        return redirect("profile")
+
+    return render(request, "trips/edit_profile.html")
 
 @login_required
 def visited_countries(request):
