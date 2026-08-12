@@ -1,19 +1,42 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Wanderlust Log</title>
-    </head>
-    <body>
-        <h1>Wanderlust Log</h1>
-        <p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wanderlust Log</title>
+
+    <!-- Common colors and styles -->
+    <link rel="stylesheet"
+          href="{% static 'css/base.css' %}">
+
+    <!-- Landing page styles -->
+    <link rel="stylesheet"
+          href="{% static 'css/index.css' %}">
+</head>
+
+<body>
+
+    <main class="landing-page">
+
+        <img
+            src="{% static 'images/logo_icon.png' %}"
+            alt="Wanderlust Log"
+            class="landing-logo"
+        >
+
+        <p class="small-text">
             Keep track of every country you've visited and create your own
             personal travel journal.
         </p>
-        <a href="{% url 'login' %}">
-            <button>Get Started</button>
-        </a>
-    </body>
-</html>
 
+        <a href="{% url 'login' %}" class="blue-button">
+            Get Started
+        </a>
+
+    </main>
+
+</body>
+</html>

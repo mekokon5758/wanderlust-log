@@ -1,0 +1,46 @@
+/* Overview page = default page */
+
+/* Visited Countries button */
+.visited-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    padding: 30px;
+
+    border-radius: 20px;
+
+    text-decoration: none;
+    color: var(--purple);
+
+    text-align: center;
+
+    transition: 0.2s ease;
+}
+
+.visited-card h2 {
+    margin: 0 0 18px 0;
+    font-size: 1.8rem;
+}
+
+.visited-number {
+    margin: 0;
+    font-size: 3.5rem;
+    font-weight: bold;
+}
+
+.visited-number span {
+    font-size: 1.5rem;
+    color: var(--purple);
+}
+
+.visited-percentage {
+    margin: 10px 0 0;
+    color: var(--purple);
+    font-size: 1.2rem;
+}
+
+.visited-card:hover {
+    transform: scale(1.03);
+}

@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Profile
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{% static 'css/base.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+
+<div class="profile-page">
+
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+    <div class="profile-picture-container">
+
+        <div class="profile-picture">
+            <img 
+                id="profile-preview"
+                src="{{ user.profile.image.url }}"
+                alt="Profile Picture">
+        </div>
+
+        <label for="profile-image" class="profile-picture-edit">
+            <i class="bi bi-camera-fill"></i>
+        </label>
+
+    </div>
+
+    <input
+        type="file"
+        id="profile-image"
+        name="image"
+        accept="image/*"
+        hidden
+    >
+
+    <br>
+                
+    <div>
+        <label for="bio" class="form-label">Bio</label>
+        <br>
+        <textarea
+            type="text"
+            name="bio"
+            class="form-textarea"
+            placeholder="Tell us a little about yourself..."
+        >{{ user.profile.bio }}</textarea>
+    </div>
+
+    <br>
+
+    <button type="submit" class="blue-button">
+        Save
+    </button>
+
+</form>
+
+</div>
+
+<script>
+    const imageInput = document.getElementById("profile-image");
+    const imagePreview = document.getElementById("profile-preview");
+
+    imageInput.addEventListener("change", function () {
+        const file = this.files[0];
+
+        if (file) {
+            imagePreview.src = URL.createObjectURL(file);
+        }
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,26 @@
+.detail-section {
+    width: 100%;
+    text-align: center;
+}
+
+.form-label {
+    display: block;
+    text-align: center;
+}
+
+.detail-card {
+    width: 90%;
+    box-sizing: border-box;
+
+    padding: 18px;
+    margin: 0 auto 20px;
+
+    background-color: var(--beige);
+
+    border: 2px solid var(--green);
+    border-radius: 15px;
+
+    cursor: pointer;
+    text-align: center;
+    transition: 0.2s ease;
+}

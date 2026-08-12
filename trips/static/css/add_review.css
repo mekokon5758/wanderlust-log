@@ -1,0 +1,24 @@
+.default-page {
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.select-wrapper {
+    position: relative;
+    width: 400px;
+}
+
+.select-wrapper::after {
+    content: "▼";
+
+    position: absolute;
+    right: 20px;
+    top: 40%;
+
+    transform: translateY(-50%);
+
+    color: var(--purple);
+    pointer-events: none;
+    font-size: 0.8rem;
+}

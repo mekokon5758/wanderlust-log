@@ -1,40 +1,62 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-Review Details
+Visited Countries
+{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet"
+      href="{% static 'css/base.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/country_detail.css' %}">
 {% endblock %}
 
 {% block content %}
 
-<h2>Review Details</h2>
+    <div class="default-page">
+        <h2 class="big-text">{{ review.country }}</h2>
 
-<form action="{% url 'delete_review' review.id %}" method="post" style="display:inline;">
-    {% csrf_token %}
-    <button type="submit" style="border:none; background:none; cursor:pointer;">
-        <i class="bi bi-trash-fill"></i>
-    </button>
-</form>
+        <div class="detail-section">
+            <label class="form-label">
+                Overall Rating:
+            </label>
+            <p class="detail-card">
+                {{ review.overall_score }}/5
+            </p>
+        </div>
 
-<h3>{{ review.country }}</h3>
+        <div class="detail-section">
+            <label class="form-label">
+                Comment:
+            </label>
+            <p class="detail-card">
+                {{ review.comment }}
+            </p>
+        </div>
 
-<p>
-    <strong>Overall Rating:</strong>
-    {{ review.overall_score }}/5
-</p>
+        <div class="detail-section">
+            <label class="form-label">
+                Reviewed on:
+            </label>
+            <p class="detail-card">
+                {{ review.created_date }}
+            </p>
+        </div>
 
-<p>
-    <strong>Comment:</strong>
-</p>
+        <form action="{% url 'delete_review' review.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="blue-button">
+                Delete this review
+            </button>
+        </form>
 
-<p>{{ review.comment }}</p>
+        <br>
 
-<p>
-    <strong>Reviewed on:</strong>
-    {{ review.created_date }}
-</p>
-
-<a href="{% url 'visited_countries' %}">
-    ← Back to Visited Countries
-</a>
+        <a href="{% url 'visited_countries' %}" class="blue-button">
+            ← Back to Visited Countries
+        </a>
+    </div>
 
 {% endblock %}

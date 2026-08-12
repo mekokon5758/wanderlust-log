@@ -1,41 +1,63 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
-Add Review
+Overview
+{% endblock %}
+
+{% block extra_css %}
+
+<link rel="stylesheet"
+          href="{% static 'css/base.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/add_review.css' %}">
+
 {% endblock %}
 
 {% block content %}
 
-<h2>Add Review</h2>
+<div class="default-page">
 
-<form method="post">
-    {% csrf_token %}
+    <form method="post">
+        {% csrf_token %}
 
-    <label for="country">Country:</label><br>
-    <input type="text" id="country" name="country" required><br><br>
+        <label for="country" class="form-label">Country:</label><br>
 
-    <label for="overall_score">Overall Score (out of 5):</label><br>
-    <select id="overall_score" name="overall_score">
-        <option value="1">1</option>
-        <option value="2">2</option>
-        <option value="3">3</option>
-        <option value="4">4</option>
-        <option value="5">5</option>
-    </select>
-    <br><br>
+        <input type="text" id="country" name="country" class="form-input" required><br>
+        
+        <br>
 
-    <label for="comment">Comment:</label><br>
-    <textarea id="comment" name="comment" rows="5" cols="40"></textarea><br><br>
+        <label for="overall_score" class="form-label">Overall Score (out of 5):</label>
+        
+        <br>
 
-    {% if messages %}
-        {% for message in messages %}
-            <div style="color: red; margin-bottom: 10px;">
-                {{ message }}
-            </div>
-        {% endfor %}
-    {% endif %}
+        <div class="select-wrapper">
+            <select id="overall_score" name="overall_score" class="form-select">
+                <option value="1" class="small-text">1</option>
+                <option value="2" class="small-text">2</option>
+                <option value="3" class="small-text">3</option>
+                <option value="4" class="small-text">4</option>
+                <option value="5" class="small-text">5</option>
+            </select>
+        <br><br>
+        </div>
 
-    <button type="submit">Submit Review</button>
-</form>
+        <label for="comment" class="form-label">Comment:</label><br>
+
+        <textarea id="comment" name="comment" class="form-textarea" rows="5" cols="40"></textarea><br><br>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="error-text">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <button type="submit" class="blue-button">Submit Review</button>
+    </form>
+
+</div>
 
 {% endblock %}

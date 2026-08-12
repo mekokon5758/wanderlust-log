@@ -1,23 +1,40 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sign Up - Wanderlust Log</title>
+
+        <link rel="stylesheet"
+          href="{% static 'css/base.css' %}">
+
+        <link rel="stylesheet"
+          href="{% static 'css/signup.css' %}">
+
     </head>
+
     <body>
-        <h1>Wanderlust Log</h1>
-        <h2>Sign Up</h2>
+
+        <main class="signup-page">
+
+            <img 
+                src="{% static 'images/logo_header.png' %}"
+                alt="Wanderlust Log"
+                class="signup-logo"
+            >
 
         <form action="" method="post">
             {% csrf_token %}
 
             <div>
-                <label for="username">Username</label><br>
+                <label for="username" class="form-label">Username</label><br>
                 <input
                     type="text"
                     id="username"
                     name="username" 
+                    class="form-input"
                     placeholder="Enter your username"
                     required
                 >
@@ -26,23 +43,41 @@
             <br>
 
             <div>
-                <label for="password">Password</label><br>
+                <label for="password" class="form-label">Password</label><br>
                 <input
                     type="password"
                     id="password"
                     name="password"
+                    class="form-input"
                     placeholder="Enter your password"
                     required
                 >
             </div>
 
+            <br>
+
             <div>
-                <label for="password_confirm">Confirm Password</label><br>
+                <label for="password_confirm" class="form-label">Confirm Password</label><br>
                 <input
                     type="password"
                     id="password_confirm"
                     name="password_confirm"
+                    class="form-input"
                     placeholder="Confirm your password"
+                    required
+                >
+            </div>
+
+            <br>
+
+            <div>
+                <label for="email" class="form-label">Email Address</label><br>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    class="form-input"
+                    placeholder="Enter your email address"
                     required
                 >
             </div>
@@ -53,12 +88,16 @@
                 <p>{{ error }}</p>
             {% endif %}
 
-            <button type="submit">Sign Up</button>
+            <button type="submit" class="blue-button">
+                Sign Up
+            </button>
         </form>
 
         <br>
 
-        <a href="{% url 'login' %}">Already have an account?</a>
+        <a href="{% url 'login' %}" class="text-link">Already have an account?</a>
+
+        </main>
 
     </body>
 </html>

@@ -1,23 +1,46 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block title %}
 Overview
 {% endblock %}
 
+{% block extra_css %}
+
+<link rel="stylesheet"
+          href="{% static 'css/base.css' %}">
+
+<link rel="stylesheet"
+      href="{% static 'css/overview.css' %}">
+
+{% endblock %}
+
 {% block content %}
 
-<p>Welcome, {{ user.username }}!</p>
+<div class="default-page">
 
-<a href="{% url 'add_review' %}">
-    <button>Add a new review</button>
-</a>
+    <a href="{% url 'visited_countries' %}" class="visited-card">
 
-<a href="{% url 'visited_countries' %}" class="visited-link">
-    <h2>Visited countries</h2>
-    <p>
-        {{ visited_count }} / 195
-        ({{ visited_percentage }}%)
-    </p>
-</a>
+        <div class="visited-card-content">
+            <h2 class="middle-text">Visited Countries</h2>
+
+            <p class="visited-number">
+                {{ visited_count }} <span>/ 195</span>
+            </p>
+
+            <p class="visited-percentage">
+                {{ visited_percentage }}% of the world explored
+            </p>
+        </div>
+
+    </a>
+
+    <br>
+
+    <a href="{% url 'add_review' %}" class="blue-button">
+        Add a New Review
+    </a>
+
+</div>
 
 {% endblock %}

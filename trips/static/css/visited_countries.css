@@ -1,0 +1,27 @@
+.review-link {
+    text-decoration: none;
+    color: inherit;
+
+    width: 100%;
+}
+
+.review-card {
+    width: 90%;
+    box-sizing: border-box;
+
+    padding: 20px;
+    margin: 0 auto 20px;
+
+    background-color: var(--beige);
+
+    border: 2px solid var(--green);
+    border-radius: 15px;
+
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.review-card:hover {
+    background-color: var(--beige-hover);
+    transform: scale(1.03);
+}

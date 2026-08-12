@@ -1,0 +1,303 @@
+:root {
+    /* Main colors */
+    --purple: #4A4466;
+    --blue: #6EADBC;
+    --green: #9FCBAD;
+    --beige: #F1F7D4;
+
+    /* Hover colors */
+    --purple-hover: #3B3652;
+    --blue-hover: #5C9BAA;
+    --green-hover: #8BB99A;
+    --beige-hover: #E5ECC8;
+
+    /* Shadow */
+    --shadow: var(--shadow);
+}
+
+/* =========================
+   General
+   ========================= */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: var(--beige);
+    color: var(--purple);
+    font-family: Arial, sans-serif;
+}
+
+.default-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+/* =========================
+   Texts
+   ========================= */
+.small-text {
+    max-width: 500px;
+    margin: 25px 0;
+
+    font-size: 1.1rem;
+    color: var(--purple);
+    font-weight: bold;
+}
+
+.middle-text {
+    max-width: 500px;
+    margin: 25px 0;
+
+    font-size: 2.0rem;
+    color: var(--purple);
+    font-weight: bold;
+}
+
+.big-text {
+    max-width: 500px;
+    margin: 25px 0;
+
+    font-size: 3.0rem;
+    color: var(--purple);
+    font-weight: bold;
+}
+
+.error-text {
+    max-width: 500px;
+    margin: 25px 0;
+
+    font-size: 1.1rem;
+    color: red;
+    font-weight: bold;
+}
+
+/* =========================
+   Forms
+   ========================= */
+.form-label {
+    color: var(--purple);
+    font-weight: bold;
+}
+
+#id_email,
+#id_new_password1,
+#id_new_password2,
+.form-input,
+.form-textarea,
+.form-select {
+    width: 400px;
+    min-height: 120px;
+
+    padding: 15px 18px;
+
+    background-color: var(--beige);
+    color: var(--purple);
+
+    border: 2px solid var(--blue);
+    border-radius: 18px;
+
+    font-family: Arial, sans-serif;
+    font-size: 1rem;
+
+    outline: none;
+    resize: vertical;
+
+    box-sizing: border-box;
+
+    transition: 0.2s ease;
+}
+
+#id_email:focus,
+#id_new_password1:focus,
+#id_new_password2:focus,
+.form-input:focus,
+.form-textarea:focus,
+.form-select:focus {
+    border-color: var(--blue);
+    box-shadow: 0 0 0 3px rgba(159, 203, 173, 0.35);
+}
+
+#id_email,
+#id_new_password1,
+#id_new_password2,
+.form-input,
+.form-select {
+    min-height: 50px;
+}
+
+.form-textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+.form-select {
+    width: 100%;
+    appearance: none;
+}
+
+/* =========================
+Buttons
+========================= */
+
+.blue-button {
+    padding: 10px 24px;
+
+    background-color: var(--blue);
+    color: var(--beige);
+
+    border: none;
+    border-radius: 20px;
+
+    font-weight: bold;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.blue-button:hover {
+    background-color: var(--blue-hover);
+    transform: scale(1.03);
+}
+
+/* clickable text */ 
+.text-link {
+    color: var(--purple);
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.text-link:hover {
+    color: var(--purple-hover);
+    transform: scale(1.03);
+}
+
+/* =========================
+Header
+========================= */
+h1 {
+    margin: 0;
+    padding: 0;
+    line-height: 0;
+}
+
+.logo-link img {
+    display: block;
+}
+
+.title-link {
+    text-decoration: none;
+    color: var(--purple);
+}
+
+.title-link:hover {
+    color: var(--shadow);
+}
+
+/* Profile dropdown*/
+.profile-dropdown {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+.profile-button {
+    width: 45px;
+    height: 45px;
+
+    padding: 0;
+    border: none;
+    background: none;
+
+    border-radius: 50%;
+    overflow: hidden;
+
+    cursor: pointer;
+}
+
+.header-profile-picture {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.profile-button i {
+    font-size: 3rem;
+}
+
+.profile-dropdown:hover {
+    color: var(--shadow);
+}
+
+.profile-menu {
+    display: none;
+
+    position: absolute;
+    top: 55px;
+    right: 0;
+
+    width: 150px;
+
+    background: var(--beige);
+    border: 1px var(--beige);
+    border-radius: 12px;
+
+    padding: 8px 0;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
+}
+
+.profile-dropdown:hover .profile-menu {
+    display: block;
+}
+
+.profile-menu a {
+    display: block;
+
+    padding: 10px 15px;
+
+    color: var(--purple);
+    text-decoration: none;
+
+    font-size: 0.95rem;
+}
+
+.profile-menu a:hover {
+    background-color: var(--beige-hover);
+}
+
+.profile-menu i {
+    margin-right: 8px;
+}
+
+/* Logout button */
+.logout-button {
+    display: block;
+    width: 100%;
+
+    padding: 10px 15px;
+
+    background: none;
+    border: none;
+
+    color: var(--purple);
+    text-align: left;
+    font-size: 0.95rem;
+
+    cursor: pointer;
+}
+
+.logout-button:hover {
+    background-color: var(--beige-hover);
+}
+
+.logout-button i {
+    margin-right: 8px;
+}
