@@ -51,9 +51,10 @@ def signup(request):
         password_confirm = request.POST["password_confirm"]
 
         if password != password_confirm:
-            return render(request, "trips/signup.html", {
-                "error": "Passwords do not match"
-            })
+            return render(request, "trips/signup.html", {"error": "Passwords do not match"})
+
+        if User.objects.filter(username=username).exists():
+            return render(request, "trips/signup.html", {"error": "This username is already taken."})
 
         user = User.objects.create_user(
             username=username,
@@ -95,8 +96,7 @@ def add_review(request):
 
         # Check if the user has already reviewed this country
         if Review.objects.filter(author=request.user, country=country).exists():
-            messages.error(request, "You have already reviewed this country.")
-            return render(request, "trips/add_review.html")
+            return render(request, "trips/add_review.html", {"error": "You have already reviewed this country."})
 
         Review.objects.create(
             country=country,
