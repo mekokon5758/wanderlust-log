@@ -47,12 +47,8 @@ Overview
 
         <textarea id="comment" name="comment" class="form-textarea" rows="5" cols="40"></textarea><br><br>
 
-        {% if messages %}
-            {% for message in messages %}
-                <div class="error-text">
-                    {{ message }}
-                </div>
-            {% endfor %}
+        {% if error %}
+            <p class="error-text">{{ error }}</p>
         {% endif %}
 
         <button type="submit" class="blue-button">Submit Review</button>
