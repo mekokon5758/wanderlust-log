@@ -20,25 +20,25 @@
 
 #### Visited Countries Page
 
-![Wanderlust Log Visited Countries](wanderlust-log/visited-countries-screenshot.png)
+![Wanderlust Log Visited Countries](../screenshots/visited-countries-screenshot.png)
 
 The overview page provides a summary of the user's travel experiences and country reviews.
 
 #### Add a new Review
 
-![Wanderlust Log Add review](wanderlust-log/add-review-screenshot.png)
+![Wanderlust Log Add review](../screenshots/add-review-screenshot.png)
 
 Users can add a country, rating, and personal comments to record their travel experiences.
 
 #### Review Details
 
-![Wanderlust Log Country Details](wanderlust-log/country-details-screenshot.png)
+![Wanderlust Log Country Details](../screenshots/country-details-screenshot.png)
 
 Individual country reviews can be viewed in detail.
 
 #### Profile
 
-![Wanderlust Log View Profile](wanderlust-log/view-profile-screenshot.png)
+![Wanderlust Log View Profile](../screenshots/view-profile-screenshot.png)
 
 The profile page displays the user's information and travel history.
 
